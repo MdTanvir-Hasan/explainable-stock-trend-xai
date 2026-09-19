@@ -1,0 +1,3 @@
+model,fold,placebo_rank,n_features,placebo_mean_abs_shap,top_feature,top_mean_abs_shap
+logistic,7,21,30,0.010837403279745287,close_sma_20,0.35893663893306704
+xgboost,7,23,30,0.02117954008281231,bond_2y,0.2677452564239502

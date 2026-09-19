@@ -1,0 +1,13 @@
+model,level,comparison,topk_overlap,spearman,cosine,marc
+logistic,feature,low_vs_high,0.1,,,
+logistic,feature,low_vs_medium,0.1,,,
+logistic,feature,medium_vs_high,1.0,,,
+logistic,group,low_vs_high,1.0,,,
+logistic,group,low_vs_medium,1.0,,,
+logistic,group,medium_vs_high,1.0,,,
+xgboost,feature,low_vs_high,0.1,,,
+xgboost,feature,low_vs_medium,0.1,,,
+xgboost,feature,medium_vs_high,1.0,,,
+xgboost,group,low_vs_high,0.0,,,
+xgboost,group,low_vs_medium,0.0,,,
+xgboost,group,medium_vs_high,1.0,,,

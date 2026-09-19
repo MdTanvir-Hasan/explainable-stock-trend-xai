@@ -1,0 +1,5 @@
+model,level,topk_overlap,spearman,cosine,marc
+logistic,feature,0.8731,0.9388,0.9845,1.931
+logistic,group,0.9615,0.9347,0.9875,0.3333
+xgboost,feature,0.8462,0.8299,0.8902,3.6158
+xgboost,group,0.8846,0.9102,0.9672,0.4762

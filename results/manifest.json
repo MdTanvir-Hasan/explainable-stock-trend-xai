@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "config_hash": "f627671d9acbb821",
+  "git_commit": "384973c",
+  "timestamp_utc": "2026-09-19T07:42:13.545107+00:00",
+  "figures": [
+    "rq1_performance_by_fold.png",
+    "rq1_performance_by_regime.png",
+    "rq1_performance_vs_baselines.png",
+    "rq2_shap_beeswarm_xgboost.png",
+    "rq2_shap_importance.png",
+    "rq3_group_importance.png",
+    "rq4a_group_by_regime_xgboost.png",
+    "rq4a_stability_levels.png",
+    "rq4b_risk_coverage.png"
+  ],
+  "tables": [
+    "abstention_risk_coverage.csv",
+    "baseline_metrics.csv",
+    "consistency_level_summary.csv",
+    "consistency_regimes.csv",
+    "consistency_rolling.csv",
+    "data_coverage.csv",
+    "diagnostic_regression.csv",
+    "diagnostic_summary.csv",
+    "faithfulness_permutation.csv",
+    "faithfulness_permutation_summary.csv",
+    "faithfulness_placebo.csv",
+    "model_metrics_by_regime.csv",
+    "model_metrics_per_fold.csv",
+    "model_metrics_per_stock.csv",
+    "model_metrics_pooled.csv",
+    "shap_direction_of_effect.csv",
+    "shap_global_importance.csv",
+    "shap_group_importance.csv"
+  ]
+}
