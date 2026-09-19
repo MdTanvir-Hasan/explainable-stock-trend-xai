@@ -1,0 +1,84 @@
+# All pipeline parameters live here. No magic numbers in code.
+
+seed: 42
+
+data:
+  start_date: "2015-01-01"
+  end_date: "2026-09-19"    # frozen snapshot; yfinance end is exclusive
+  stocks: [BHP, CBA, CSL, NAB, WBC, ANZ, WES, RIO, MQG, TLS]
+  index_symbol: "^AXJO"     # S&P/ASX 200
+  vix_symbol: "^AXVI"       # S&P/ASX 200 VIX
+  macro_lag_days: 1         # conservative publication lag before a macro value is usable
+  source: yfinance
+  price_field: "Adj Close"  # returns/target use adjusted close to avoid dividend jumps
+  force_download: false     # true re-downloads raw; false reuses the committed snapshot
+  rba_cash_rate_csv: "https://www.rba.gov.au/statistics/tables/csv/f1-data.csv"
+  rba_bond_yields_csv: "https://www.rba.gov.au/statistics/tables/csv/f2-data.csv"
+
+paths:
+  raw: data/raw
+  processed: data/processed
+  external: data/external
+  results: results
+  figures: results/figures
+  tables: results/tables
+  explanations: results/explanations
+  models: results/models
+
+features:
+  rsi_window: 14
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+  sma_windows: [10, 20, 50]
+  ema_windows: [12, 26]
+  bollinger_window: 20
+  bollinger_std: 2.0
+  roc_window: 10
+  atr_window: 14
+  realised_vol_window: 21
+  return_lags: [1, 2, 3, 5]
+  volume_change_window: 5
+  volume_ratio_window: 20
+  vix_change_window: 5
+
+walk_forward:
+  n_folds: 8
+  min_train_size: 500       # rows per stock in the first training window
+  val_size: 60              # validation block (model selection / early stopping)
+  test_size: 120            # non-overlapping test block (trading days)
+
+models:
+  logistic:
+    C: 1.0
+    max_iter: 1000
+    class_weight: balanced
+  xgboost:
+    n_estimators: 300
+    max_depth: 4
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    reg_lambda: 1.0
+    eval_metric: logloss
+
+shap:
+  background_size: 200
+  explain_sample_size: 2000   # max test rows explained per fold
+
+consistency:
+  rolling_window: 120         # rows per rolling window for explanation stability
+  diagnostic_window: 60       # prior days used for the per-prediction consistency score
+  top_k: 10
+  # Volatility regimes by VIX percentile; boundaries are quantiles in [0, 1].
+  regimes:
+    low: [0.0, 0.33]
+    medium: [0.33, 0.66]
+    high: [0.66, 1.0]
+
+abstention:
+  coverage_grid: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+
+faithfulness:
+  top_k: 5              # features treated as "important" in the permutation test
+  placebo_fold: -1      # fold (from the end) used for the placebo retrain

@@ -1,0 +1,17 @@
+numpy
+pandas
+scikit-learn
+xgboost
+shap
+matplotlib
+pyyaml
+yfinance
+requests
+statsmodels
+streamlit
+pyarrow
+pytest
+jupyter
+ipykernel
+nbformat
+nbconvert
